@@ -22,7 +22,7 @@ module.exports = {
    const savedOrder = await Orders.create(payLoad, { w: 1 }, { returning: true });
    // Loop through all the items in req.products
    payLoad.products.forEach(async (item) => {
-    console.log("🚀 ~ file: order.js:25 ~ payLoad.products.forEach ~ item", item);
+
 
     // Search for the product with the givenId and make sure it exists. If it doesn't, respond with status 400.
     // const product = await Products.findByPk(item.id);
