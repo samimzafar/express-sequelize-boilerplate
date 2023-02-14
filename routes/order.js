@@ -8,7 +8,7 @@ const router = Router();
 const controller = require("../controllers/order");
 
 // Routes
-router.route('/add').get(controller.add)
-router.route('/get').get(controller.get)
+router.route("/add").get(controller.add);
+router.route("/get").get(controller.get);
 
 module.exports = router;

@@ -13,14 +13,14 @@ module.exports = {
       },
       fk_product_Id: {
         type: Sequelize.INTEGER,
-        references: { model: 'products', key: 'id' }
+        references: { model: "products", key: "id" },
       },
       fk_order_Id: {
         type: Sequelize.INTEGER,
-        references: { model: 'orders', key: 'id' }
+        references: { model: "orders", key: "id" },
       },
       quantity: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

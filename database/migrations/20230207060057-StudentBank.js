@@ -1,7 +1,5 @@
 "use strict";
-
-const table = "products";
-
+const table = "student_banks";
 module.exports = {
   up: async function (queryInterface, Sequelize) {
     await queryInterface.createTable(table, {
@@ -11,14 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      title: {
-        type: Sequelize.STRING,
-      },
-      description: {
-        type: Sequelize.STRING,
-      },
-      price: {
+      fk_student_Id: {
         type: Sequelize.INTEGER,
+        references: { model: "students", key: "id" },
+      },
+      fk_bank_Id: {
+        type: Sequelize.INTEGER,
+        references: { model: "banks", key: "id" },
       },
       createdAt: {
         allowNull: false,
@@ -30,7 +27,8 @@ module.exports = {
       },
     });
   },
-  down: async function (queryInterface) {
+
+  down: async function (queryInterface, Sequelize) {
     await queryInterface.dropTable(table);
   },
 };
