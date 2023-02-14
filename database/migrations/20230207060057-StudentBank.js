@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const table = "student_banks";
 module.exports = {
   up: async function (queryInterface, Sequelize) {
@@ -11,11 +11,11 @@ module.exports = {
       },
       fk_student_Id: {
         type: Sequelize.INTEGER,
-        references: { model: 'students', key: 'id' }
+        references: { model: "students", key: "id" },
       },
       fk_bank_Id: {
         type: Sequelize.INTEGER,
-        references: { model: 'banks', key: 'id' }
+        references: { model: "banks", key: "id" },
       },
       createdAt: {
         allowNull: false,
@@ -30,5 +30,5 @@ module.exports = {
 
   down: async function (queryInterface, Sequelize) {
     await queryInterface.dropTable(table);
-  }
+  },
 };

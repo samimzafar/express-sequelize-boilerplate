@@ -7,7 +7,7 @@ module.exports = {
       const product = await Products.create({
         title: "TV",
         description: "Samsung Note",
-        price: 5000
+        price: 5000,
       });
       return res.status(200).send({ product });
     } catch (err) {
@@ -23,15 +23,17 @@ module.exports = {
       const allOrders = await Products.findOne({
         where: { id: 2 },
         attributes: ["id", "title", "description"],
-        include: [{
-          model: Orders,
-          required: true,
-          as: "orders",
-          attributes: ["id", ['address', 'location']],
-          through: {
-            attributes: ['id', 'quantity']
-          }
-        }]
+        include: [
+          {
+            model: Orders,
+            required: true,
+            as: "orders",
+            attributes: ["id", ["address", "location"]],
+            through: {
+              attributes: ["id", "quantity"],
+            },
+          },
+        ],
       });
 
       // Make sure to include the products
@@ -56,5 +58,5 @@ module.exports = {
         .status(err.status || 500)
         .send(err.message || "Something went wrong!");
     }
-  }
+  },
 };

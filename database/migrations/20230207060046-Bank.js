@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const table = "banks";
 module.exports = {
   up: async function (queryInterface, Sequelize) {
@@ -10,10 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       location: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -28,5 +28,5 @@ module.exports = {
 
   down: async function (queryInterface, Sequelize) {
     await queryInterface.dropTable(table);
-  }
+  },
 };

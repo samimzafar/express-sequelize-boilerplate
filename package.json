@@ -11,6 +11,7 @@
     "test": "npm run test",
     "lint": "npx eslint .",
     "prettier": "npx prettier -c .",
+    "prettify": "npx prettier -w .",
     "db:migrate": "npx sequelize db:migrate",
     "db:migrate:create": "npx sequelize migration:generate --name",
     "db:migrate:undo": "npx sequelize db:migrate:undo"
@@ -40,7 +41,7 @@
     "eslint-config-prettier": "^6.15.0",
     "husky": "^4.3.8",
     "nodemon": "^2.0.20",
-    "prettier": "^2.0.5",
+    "prettier": "^2.8.4",
     "pretty-quick": "^2.0.2",
     "sequelize-cli": "^5.5.1"
   },

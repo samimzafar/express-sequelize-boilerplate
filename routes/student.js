@@ -8,7 +8,7 @@ const router = Router();
 const controller = require("../controllers/student");
 
 // Routes
-router.route('/add').get(controller.add)
-router.route('/getOne').get(controller.getOne)
+router.route("/add").post(controller.add);
+router.route("/getOne").get(controller.getOne);
 
 module.exports = router;
