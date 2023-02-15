@@ -5,10 +5,9 @@ const router = Router();
 // const authenticateUser = require("../middlewares/authenticate_user");
 
 // Controllers
-const controller = require("../controllers/product");
+const controller = require("../controllers/project");
 
 // Routes
-router.route("/add").get(controller.get);
-router.route("/getOne").get(controller.getOne);
+router.route("/add").post(controller.create);
 
 module.exports = router;
