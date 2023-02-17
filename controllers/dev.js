@@ -40,7 +40,7 @@ module.exports = {
  findDevProject: async (req, res) => {
   try {
    const { query: { devId } } = req;
-   const developer = await Devs.findOne({
+   let developer = await Devs.findOne({
     where: { id: devId },
     attributes: ['id', 'name'],
     include: [
@@ -48,9 +48,6 @@ module.exports = {
       model: DevProjects,
       as: "devProjects",
       attributes: ['id'],
-      where: {
-       fk_dev_id: devId,
-      },
       include: {
        model: Projects,
        as: "projects",
@@ -59,6 +56,7 @@ module.exports = {
      },
     ]
    });
+   if (!developer) developer = "Developer not found";
    return res.send({
     status: 200,
     success: true,
