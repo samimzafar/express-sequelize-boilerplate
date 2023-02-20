@@ -5,11 +5,11 @@ const router = Router();
 // const authenticateUser = require("../middlewares/authenticate_user");
 
 // Controllers
-const controller = require("../controllers/project");
+const { project: { create, getAll, getOne } } = require("../controllers");
 
 // Routes
-router.route("/add").post(controller.create);
-router.route("/").get(controller.getAll);
-router.route("/:name").get(controller.getOne);
+router.route("/add").post(create);
+router.route("/").get(getAll);
+router.route("/:name").get(getOne);
 
 module.exports = router;
