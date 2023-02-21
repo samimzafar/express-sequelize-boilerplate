@@ -5,10 +5,10 @@ const router = Router();
 // const authenticateUser = require("../middlewares/authenticate_user");
 
 // Controllers
-const controller = require("../controllers/dev");
+const { dev: { create, findDevProject } } = require("../controllers");
 
 // Routes
-router.route("/add").post(controller.create);
-router.route("/find-dev-project").get(controller.findDevProject);
+router.route("/add").post(create);
+router.route("/find-dev-project").get(findDevProject);
 
 module.exports = router;
