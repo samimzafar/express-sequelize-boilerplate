@@ -1,6 +1,8 @@
 const { Projects, DevProjects, Devs } = require("../models");
+const ApiError = require("../utils/apiError");
+const builtResponse = require("../utils/builtResponse");
 module.exports = {
-  create: async (req, res) => {
+  create: async (req, res, next) => {
     try {
       const {
         query: { name },
@@ -8,21 +10,14 @@ module.exports = {
       let projectSaved = await Projects.create({
         name,
       });
-      return res.send({
-        status: 200,
-        success: true,
-        message: "Project added successfully.",
-        data: projectSaved,
-      });
+
+      builtResponse(res, "Project added successfully", projectSaved);
     } catch (err) {
-      console.log(err.message);
-      return res.status(err.status || 500).send({
-        error: err.message || "Something went wrong!",
-      });
+      next(err);
     }
   },
 
-  getAll: async (req, res) => {
+  getAll: async (req, res, next) => {
     try {
       let projectSaved = await Projects.findAll({
         attributes: ["id", "name"],
@@ -39,21 +34,13 @@ module.exports = {
           },
         ],
       });
-      return res.send({
-        status: 200,
-        success: true,
-        message: "Project added successfully.",
-        data: projectSaved,
-      });
+      builtResponse(res, "Project fetched successfully", projectSaved);
     } catch (err) {
-      console.log(err.message);
-      return res.status(err.status || 500).send({
-        error: err.message || "Something went wrong!",
-      });
+      next(err);
     }
   },
 
-  getOne: async (req, res) => {
+  getOne: async (req, res, next) => {
     try {
       const {
         params: { name },
@@ -75,17 +62,12 @@ module.exports = {
           },
         ],
       });
-      return res.send({
-        status: 200,
-        success: true,
-        message: "Project Fetched successfully.",
-        data: projectSaved,
-      });
+      if (projectSaved.length == 0) {
+        throw new ApiError(404, "Project is not found");
+      }
+      builtResponse(res, "Project Fetched successfully", projectSaved);
     } catch (err) {
-      console.log(err.message);
-      return res.status(err.status || 500).send({
-        error: err.message || "Something went wrong!",
-      });
+      next(err);
     }
   },
 };

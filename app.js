@@ -45,9 +45,13 @@ app.use(cors());
 // routes
 app.use("/api", router);
 
-// catch 404 later
+// catch 404
 app.use((req, res) => {
-  return res.status(404).send("Error 404, Route not found");
+  return res.status(404).send({
+    status: 404,
+    success: false,
+    message: `Cannot ${req.method} ${req.url}`,
+  });
 });
 
 // error handling
@@ -57,7 +61,11 @@ app.use((err, req, res, next) => {
     return next(err);
   }
   req.log.error(err);
-  return res.status(500).send(err.message);
+  return res.status(err.status || 500).send({
+    status: err.status || 500,
+    success: false,
+    message: err.message,
+  });
 });
 
 module.exports = app;
