@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { camelCase, lowerFirst, forEach } = require("lodash");
 const basename = path.basename(__filename);
-const controller = {};
+const validation = {};
 
 const files = fs.readdirSync(__dirname).filter((file) => {
   return (
@@ -12,7 +12,7 @@ const files = fs.readdirSync(__dirname).filter((file) => {
 forEach(files, (file) => {
   const validationFileDir = path.join(__dirname, file);
   let name = lowerFirst(camelCase(file));
-  controller[name.slice(0, -2)] = require(validationFileDir);
+  validation[name.slice(0, -2)] = require(validationFileDir);
 });
-module.exports = controller;
 
+module.exports = validation;
